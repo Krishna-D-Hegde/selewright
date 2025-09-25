@@ -82,7 +82,7 @@ selewright.openUrl("https://www.redbus.in");
 
 ### Guided by:
 - [Chandrashekar Patil](https://www.linkedin.com/in/patilchandrashekhar/), Senior Director - QA, redBus
-- [Eesha Karanwal](https://www.linkedin.com/in/eesha-karanwal-1263461ab/), SDET Engineering Manager, redBus
+- [Eesha Karanwal](https://www.linkedin.com/in/eesha-karanwal-1263461ab/), SDET Manager, redBus
 
 ### Contributors [Browser Test Automation Team, redBus]:
 - [Smruti Sourav Sahoo](https://www.linkedin.com/in/smruti-sourav-2000/), SDET
