@@ -12,7 +12,7 @@ Selewright is a lightweight abstraction layer built on top of **Selenium** and *
 
 With Selewright, switching between **Selenium** and **Playwright** becomes seamless — *no code changes required* in your test suite.
 
-> Why not stick with any one browser automation tool? [[Read here](https://medium.com/@krishna.d.hegde/selenium-vs-playwright-only-you-can-decide-068a01bb7081)]
+> Why not stick with any one browser automation tool? [[Read here](https://medium.com/@krishna.d.hegde/selenium-or-playwright-why-we-built-selewright-3eb04a205460)]
 
 ### 🧠 Future-Proof Design
 
