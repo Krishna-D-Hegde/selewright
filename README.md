@@ -46,7 +46,7 @@ Selewright brings **Playwright-like auto-waiting to Selenium**, ensuring more st
 ## ⚙️ How to Use Selewright in Your Project
 
 Selewright is written in **Java** and integrates easily with any test automation framework.
-- JAR file: [[Download here](http://git.redbus.com/krishna.hegde/selewright/-/blob/05b7649e7619fb592b18c74eaa7070b21c17285c/selewright-1.0-SNAPSHOT.jar)]
+- JAR file: [[Download here](https://github.com/Krishna-D-Hegde/selewright/blob/main/selewright-1.0-SNAPSHOT.jar)]
 
 ### 📚 Setup Guide in a Maven Project
 - Add Selenium and Playwright dependencies
