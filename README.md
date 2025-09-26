@@ -1,88 +1,229 @@
-# Selewright: A Unified Browser Automation Tool for Test Automation
+# Selewright
 
-## 🚀 What is Selewright?
+[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com)
+[![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://selenium.dev)
+[![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev)
 
-Selewright is a lightweight abstraction layer built on top of **Selenium** and **Playwright**, designed for Browser Test Automation.
+**A Unified Browser Automation Tool for Test Automation**
 
----
+Selewright brings together the best of Selenium and Playwright, allowing you to write browser automation code once and run it on either framework without any code changes.
 
-## 🔍 Why Choose Selewright?
+## 🚀 Why Choose Selewright?
 
-### 🔁 Seamless Tool Switching
+- **✅ Write Once, Run Anywhere**: Code once and execute with either Selenium or Playwright
+- **🔄 Future-Proof**: Easily adopt new browser automation frameworks under the Selewright umbrella
+- **🎯 Focus on Business Logic**: Selewright handles the complexities while you focus on your test scenarios
+- **🛠️ Built-in Conveniences**: Automatic waits, response mocking/fetching, and boilerplate code handling
+- **🔧 No Tool Lock-in**: Switch between automation tools without rewriting your tests
 
-With Selewright, switching between **Selenium** and **Playwright** becomes seamless — *no code changes required* in your test suite.
+## 📋 Table of Contents
 
-> Why not stick with any one browser automation tool? [[Read here](https://medium.com/@krishna.d.hegde/selenium-or-playwright-why-we-built-selewright-3eb04a205460)]
+- [Project Structure](#-project-structure)
+- [Quick Start](#-quick-start)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Core Methods](#-core-methods)
+- [Migration Guide](#-migration-guide)
+- [Contributing](#-contributing)
+- [Acknowledgements](#-acknowledgements)
+- [Roadmap](#-roadmap)
+- [Issues and Support](#-issues-and-support)
+- [License](#-license)
 
-### 🧠 Future-Proof Design
 
-If a new browser automation tool takes over, Selewright can support it, allowing you to adopt it **without reworking your existing codebase**.
+## 🏗️ Project Structure
 
-### ✂️ Reduced Boilerplate Code
-
-Selewright includes built-in helper methods for Test Automation to:
-
-- Simplify browser automation tasks
-- Fetch/Mock browser APIs using POJOs
-- Minimize repetitive code for developers
-
-### ⏳ Auto-Wait Mechanism
-
-Selewright brings **Playwright-like auto-waiting to Selenium**, ensuring more stable and reliable test executions.
-
----
-
-## 🧱 Project Structure
-
-- **Selewright**: The core interface for browser automation tools
-- **PlaywrightImplementation**: Implements Selewright methods using Playwright
-- **SeleniumImplementation**: Implements Selewright methods using Selenium
-- **RequestConditionsToMock**: A POJO to define request conditions for mocking browser API calls
-- **MockResponseToSend**: A POJO to define responses sent when mocking browser API calls
-- **OtherHelpers**: Utility functions for common test automation tasks
-
----
-
-## ⚙️ How to Use Selewright in Your Project
-
-Selewright is written in **Java** and integrates easily with any test automation framework.
-- JAR file: [[Download here](https://github.com/Krishna-D-Hegde/selewright/blob/main/selewright-1.0-SNAPSHOT.jar)]
-
-### 📚 Setup Guide in a Maven Project
-- Add Selenium and Playwright dependencies
-- Selewright JAR Setup: [Guide Link](https://chatgpt.com/share/68d3ee72-6f90-8001-a11d-210d361dcece)
-
-#### Work in Progress:
-- JAR hosted on Maven Central
-- Support for other programming languages (Python, JavaScript, C#)
-- A Test automation project demonstrating in depth Selewright usage
-
-## 💡 Tool Switch Sample Setup
-
-```java
-String automationTool = "selenium"; // or "playwright"
-Selewright selewright = null;
-if (automationTool.equalsIgnoreCase("selenium")) {
-    WebDriver driver = new ChromeDriver();
-    selewright = new SeleniumImplementation(driver);
-} else if (automationTool.equalsIgnoreCase("playwright")){
-    Playwright playwright = Playwright.create();
-    Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-    BrowserContext context = browser.newContext();
-    Page page = context.newPage();
-    selewright = new PlaywrightImplementation(page);
-}
-selewright.openUrl("https://www.redbus.in");
+```
+selewright/
+├── src/
+│   ├── main/java/com/redbus/selewright/
+│   │   ├── Selewright.java                    # Core interface for browser automation tools
+│   │   ├── PlaywrightImplementation.java      # Implements Selewright methods using Playwright
+│   │   ├── SeleniumImplementation.java        # Implements Selewright methods using Selenium
+│   │   ├── RequestConditionsToMock.java       # POJO to define request conditions for mocking API calls
+│   │   ├── MockResponseToSend.java            # POJO to define mock responses for API calls
+│   │   └── OtherHelpers.java                  # Utility functions for common test automation tasks
+│   └── test/java/
+│       └── demo.java                          # Demonstrates sample setup and usage of Selewright
 ```
 
-## 🖋️ Acknowledgements
 
-### Author: 
+> **Note**: Browser API methods (mocking/fetching) are only implemented in `PlaywrightImplementation`. We recommend using Playwright for tests involving browser API interactions.
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Java 8 or higher
+- Maven 3.6+
+- Git
+
+### Try It Out
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Krishna-D-Hegde/selewright.git
+   cd selewright
+   ```
+
+2. **Run the demo**
+   ```bash
+   cd src/test/java
+   javac demo.java
+   java demo
+   ```
+
+## 📦 Installation
+
+### Maven Setup
+
+1. **Download the JAR** (Coming soon on Maven Central Repository)
+
+   Download `selewright-1.0-SNAPSHOT.jar` and place it in your project root.
+
+2. **Add to your `pom.xml`**
+   ```xml
+   <dependency>
+       <groupId>com.redbus</groupId>
+       <artifactId>selewright</artifactId>
+       <version>1.0-SNAPSHOT</version>
+       <scope>system</scope>
+       <systemPath>${basedir}/selewright-1.0-SNAPSHOT.jar</systemPath>
+   </dependency>
+   
+   <!-- Selenium dependency -->
+   <dependency>
+       <groupId>org.seleniumhq.selenium</groupId>
+       <artifactId>selenium-java</artifactId>
+       <version>4.15.0</version>
+   </dependency>
+   
+   <!-- Playwright dependency -->
+   <dependency>
+       <groupId>com.microsoft.playwright</groupId>
+       <artifactId>playwright</artifactId>
+       <version>1.40.0</version>
+   </dependency>
+   
+   <!-- Appium (for mobile web testing) -->
+   <dependency>
+       <groupId>io.appium</groupId>
+       <artifactId>java-client</artifactId>
+       <version>8.6.0</version>
+   </dependency>
+   ```
+> **Note**: You are free to choose any versions of Selenium, Playwright, or Appium as per your project requirements.
+
+## 💻 Usage
+
+### Basic Setup with a Sample Test
+
+```java
+import com.microsoft.playwright.*;
+import com.redbus.selewright.PlaywrightImplementation;
+import com.redbus.selewright.SeleniumImplementation;
+import com.redbus.selewright.Selewright;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Demo {
+   public static void main(String[] args) {
+      Selewright selewright = null;
+
+      try {
+         selewright = setupSelewright("selenium");
+         boolean result = runSampleTest(selewright);
+         System.out.println("Test Verification: " + result);
+      } finally {
+         if (selewright != null) {
+            selewright.closeBrowser();
+         }
+      }
+   }
+
+   private static Selewright setupSelewright(String automationTool) {
+      if ("selenium".equalsIgnoreCase(automationTool.trim())) {
+         WebDriver driver = new ChromeDriver();
+         return new SeleniumImplementation(driver);
+      } else if ("playwright".equalsIgnoreCase(automationTool.trim())) {
+         Playwright playwright = Playwright.create();
+         Browser browser = playwright.chromium()
+                 .launch(new BrowserType.LaunchOptions().setHeadless(false));
+         BrowserContext context = browser.newContext();
+         Page page = context.newPage();
+         return new PlaywrightImplementation(page);
+      }
+      throw new IllegalArgumentException("Invalid tool: " + automationTool);
+   }
+
+   private static boolean runSampleTest(Selewright selewright) {
+      selewright.openUrl("https://github.com/Krishna-D-Hegde?tab=repositories");
+      selewright.enterText("//input[@id='your-repos-filter']", "selewright");
+      selewright.click("//a[@href='/Krishna-D-Hegde/selewright']");
+      return selewright.isDisplayed("(//a[@href='/Krishna-D-Hegde/selewright/blob/main/README.md'])[last()]");
+   }
+}
+```
+
+## 📚 Core Methods
+
+Refer [Selewright-Interface](https://github.com/Krishna-D-Hegde/selewright/blob/main/src/main/java/com/redbus/selewright/Selewright.java) for complete method list with Javadocs.
+
+
+## 🔄 Migration Guide
+
+### From Selenium
+
+If you have an existing Selenium helper class:
+
+**Before:**
+```java
+public void click(String locator) {
+    driver.findElement(By.xpath(locator)).click();
+}
+```
+
+**After:**
+```java
+public void click(String locator) {
+    selewright.click(locator);
+}
+```
+
+### From Playwright
+
+Similar migration process - replace your Playwright-specific code with Selewright method calls.
+
+## 🤝 Contributing
+
+We welcome contributions from the community! This project can only evolve with open source contributions.
+
+### How to Contribute
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please read our [Contributing Guidelines](https://github.com/Krishna-D-Hegde/selewright/blob/main/CONTRIBUTING.md)) before submitting contributions.
+
+### Development Setup
+
+1. Clone the repository
+2. Import into your IDE
+3. Run tests to ensure everything works
+4. Start coding!
+
+
+## 🙌 Acknowledgements
+
+### Author:
 - [Krishna Hegde](https://www.linkedin.com/in/krishna-d-hegde/), Senior SDET, redBus
 
 ### Guided by:
 - [Chandrashekar Patil](https://www.linkedin.com/in/patilchandrashekhar/), Senior Director - QA, redBus
-- [Eesha Karanwal](https://www.linkedin.com/in/eesha-karanwal-1263461ab/), SDET Manager, redBus
+- [Eesha Karanwal](https://www.linkedin.com/in/eesha-karanwal-1263461ab/), SDET Engineering Manager, redBus
 
 ### Contributors [Browser Test Automation Team, redBus]:
 - [Smruti Sourav Sahoo](https://www.linkedin.com/in/smruti-sourav-2000/), SDET
@@ -93,3 +234,21 @@ selewright.openUrl("https://www.redbus.in");
 - [Shravya Acharya](https://www.linkedin.com/in/shravya-a-acharya-98b228183/), SDET
 - [Pooja Benni](https://www.linkedin.com/in/pooja-benni-b1886571/), Senior QA
 - [Sowmya Acharya](https://in.linkedin.com/in/sowmya-acharya-105a4025b), SDET
+
+
+## 🎯 Roadmap
+
+- [ ] Support for additional programming languages (Python, JavaScript, C#)
+- [ ] Selewright MCP
+- [ ] Support for additional browser automation frameworks
+
+
+## 🐛 Issues and Support
+
+Found a bug or need help? Please [open an issue](https://github.com/Krishna-D-Hegde/selewright/issues) on GitHub.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
