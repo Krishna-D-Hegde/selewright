@@ -13,7 +13,7 @@ Selewright brings together the best of Selenium and Playwright, allowing you to 
 - **✅ Write Once, Run Anywhere**: Code once and execute with either Selenium or Playwright
 - **🔄 Future-Proof**: Easily adopt new browser automation frameworks under the Selewright umbrella
 - **🎯 Focus on Business Logic**: Selewright handles the complexities while you focus on your test scenarios
-- **🛠️ Built-in Conveniences**: Automatic waits, response mocking/fetching, and boilerplate code handling
+- **🛠️ Built-in Conveniences**: Automatic waits, POJO setup to mock APIs triggered by browser frontend, boilerplate code handling
 - **🔧 No Tool Lock-in**: Switch between automation tools without rewriting your tests
 
 ## 📋 Table of Contents
