@@ -98,24 +98,27 @@ The corresponding methods in `SeleniumImplementation` are left unimplemented as 
    <dependency>
        <groupId>org.seleniumhq.selenium</groupId>
        <artifactId>selenium-java</artifactId>
-       <version>4.15.0</version>
+       <version>4.35.0</version>
    </dependency>
    
    <!-- Playwright dependency -->
    <dependency>
        <groupId>com.microsoft.playwright</groupId>
        <artifactId>playwright</artifactId>
-       <version>1.40.0</version>
+       <version>1.55.0</version>
    </dependency>
    
    <!-- Appium (for mobile web testing) -->
    <dependency>
        <groupId>io.appium</groupId>
        <artifactId>java-client</artifactId>
-       <version>8.6.0</version>
+       <version>10.0.0</version>
    </dependency>
    ```
-> **Note**: You are free to choose any versions of Selenium, Playwright, or Appium as per your requirements.
+
+> **Note:** You are free to use any version of Selenium or Playwright. However, make sure the Appium version you choose is compatible with your Selenium version.  
+> For more details, refer [here](https://claude.ai/share/a64308e2-8268-4a6c-9f17-b3147114560e).
+ 
 
 ## 💻 Usage
 
