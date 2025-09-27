@@ -48,7 +48,10 @@ selewright/
 ```
 
 
-> **Note**: Browser API methods (mocking/fetching) are only implemented in `PlaywrightImplementation`. We recommend using Playwright for tests involving browser API interactions.
+> **Note**:
+We recommend Playwright for tests which involve fetching or mocking APIs invoked by the browser frontend.
+The corresponding methods in `SeleniumImplementation` are left unimplemented as Selenium currently supports network interception only in Chrome via the DevTools Protocol.
+
 
 ## 🚀 Quick Start
 
