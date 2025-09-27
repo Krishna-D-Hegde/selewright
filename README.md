@@ -40,8 +40,8 @@ selewright/
 │   │   ├── Selewright.java                    # Core interface for browser automation tools
 │   │   ├── PlaywrightImplementation.java      # Implements Selewright methods using Playwright
 │   │   ├── SeleniumImplementation.java        # Implements Selewright methods using Selenium
-│   │   ├── RequestConditionsToMock.java       # POJO to define request conditions for mocking API calls
-│   │   ├── MockResponseToSend.java            # POJO to define mock responses for API calls
+│   │   ├── RequestConditionsToMock.java       # POJO to define request conditions for APIs invoked by browser frontend
+│   │   ├── MockResponseToSend.java            # POJO to define mock responses for APIs invoked by browser frontend
 │   │   └── OtherHelpers.java                  # Utility functions for common test automation tasks
 │   └── test/java/
 │       └── demo.java                          # Demonstrates sample setup and usage of Selewright
@@ -132,42 +132,56 @@ import com.redbus.selewright.Selewright;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+/**
+ * A demo class to showcase the usage of Selewright with both Selenium and Playwright
+ */
 public class Demo {
-   public static void main(String[] args) {
-      Selewright selewright = null;
+    public static void main(String[] args) {
+        Selewright selewright = null;
 
-      try {
-         selewright = setupSelewright("selenium");
-         boolean result = runSampleTest(selewright);
-         System.out.println("Test Verification: " + result);
-      } finally {
-         if (selewright != null) {
-            selewright.closeBrowser();
-         }
-      }
-   }
+        try {
+            selewright = setupSelewright("playwright");
+            boolean result = runSampleTest(selewright);
+            System.out.println("Test Verification: " + result);
+        } finally {
+            if (selewright != null) {
+                selewright.closeBrowser();
+            }
+        }
+    }
 
-   private static Selewright setupSelewright(String automationTool) {
-      if ("selenium".equalsIgnoreCase(automationTool.trim())) {
-         WebDriver driver = new ChromeDriver();
-         return new SeleniumImplementation(driver);
-      } else if ("playwright".equalsIgnoreCase(automationTool.trim())) {
-         Playwright playwright = Playwright.create();
-         Browser browser = playwright.chromium()
-                 .launch(new BrowserType.LaunchOptions().setHeadless(false));
-         BrowserContext context = browser.newContext();
-         Page page = context.newPage();
-         return new PlaywrightImplementation(page);
-      }
-      throw new IllegalArgumentException("Invalid tool: " + automationTool);
-   }
+    /**
+     * Setup Selewright with either Selenium or Playwright based on the input parameter
+     * @param automationTool - "selenium" or "playwright"
+     * @return Selewright instance
+     */
+    private static Selewright setupSelewright(String automationTool) {
+        if ("selenium".equalsIgnoreCase(automationTool.trim())) {
+            WebDriver driver = new ChromeDriver();
+            return new SeleniumImplementation(driver);
+        } else if ("playwright".equalsIgnoreCase(automationTool.trim())) {
+            Playwright playwright = Playwright.create();
+            Browser browser = playwright.chromium()
+                    .launch(new BrowserType.LaunchOptions().setHeadless(false));
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            return new PlaywrightImplementation(page);
+        }
+        throw new IllegalArgumentException("Invalid tool: " + automationTool);
+    }
 
-   private static boolean runSampleTest(Selewright selewright) {
-      selewright.openUrl("https://github.com/Krishna-D-Hegde?tab=repositories");
-      selewright.enterText("//input[@id='your-repos-filter']", "selewright");
-      selewright.click("//a[@href='/Krishna-D-Hegde/selewright']");
-      return selewright.isDisplayed("(//a[@href='/Krishna-D-Hegde/selewright/blob/main/README.md'])[last()]");
-   }
+    /**
+     * A sample test to demonstrate the usage of Selewright
+     * Searches for 'selewright' repository on Author's GitHub and verifies readme file presence
+     * @param selewright
+     * @return
+     */
+    private static boolean runSampleTest(Selewright selewright) {
+        selewright.openUrl("https://github.com/Krishna-D-Hegde?tab=repositories");
+        selewright.enterText("//input[@id='your-repos-filter']", "selewright");
+        selewright.click("//a[@href='/Krishna-D-Hegde/selewright']");
+        return selewright.isDisplayed("(//a[@href='/Krishna-D-Hegde/selewright/blob/main/README.md'])[last()]");
+    }
 }
 ```
 
@@ -252,9 +266,5 @@ Please read our [Contributing Guidelines](https://github.com/Krishna-D-Hegde/sel
 ## 🐛 Issues and Support
 
 Found a bug or need help? Please [open an issue](https://github.com/Krishna-D-Hegde/selewright/issues) on GitHub.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
