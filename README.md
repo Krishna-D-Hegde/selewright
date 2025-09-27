@@ -28,7 +28,6 @@ Selewright brings together the best of Selenium and Playwright, allowing you to 
 - [Acknowledgements](#-acknowledgements)
 - [Roadmap](#-roadmap)
 - [Issues and Support](#-issues-and-support)
-- [License](#-license)
 
 
 ## 🏗️ Project Structure
